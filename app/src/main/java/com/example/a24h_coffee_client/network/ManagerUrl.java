@@ -6,6 +6,14 @@ public class ManagerUrl {
     // account
     public static final String LOGIN = "login";
     // table
-
-    //product
+    public static final String READ_TABLE = "tables";
+    // product
+    public static final String READ_PRODUCT = "products";
+    // banner
+    public static final String READ_BANNER = "banners";
+    // category
+    public static final String READ_CATEGORY = "category";
+    // bill
+    public static final String INSERT_BILL = "insert/bill";
+    // notification
 }
