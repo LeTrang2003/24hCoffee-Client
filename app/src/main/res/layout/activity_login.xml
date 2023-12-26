@@ -24,7 +24,7 @@
                 android:id="@+id/layoutHeader"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="70dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -136,37 +136,4 @@
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-    <LinearLayout
-        android:id="@+id/layoutFotter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:alpha="0.7"
-            android:fontFamily="@font/inter_regular"
-            android:text="@string/ban_chua_co_tk"
-            android:textColor="@color/BlackPrimary"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tvSignUp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/inter_bold"
-            android:text="@string/dang_ky"
-            android:textColor="@color/BluePrimary"
-            android:textSize="16sp" />
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

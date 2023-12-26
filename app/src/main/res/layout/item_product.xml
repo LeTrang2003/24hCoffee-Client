@@ -53,25 +53,39 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="11dp"
             android:layout_marginTop="10dp"
+            android:ellipsize="end"
             android:fontFamily="@font/inter_regular"
+            android:maxLines="1"
             android:text="@string/text_name_product"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:maxLines="1"
-            android:ellipsize="end"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_price_sales_product_grid"
+            android:id="@+id/tv_price_product"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/inter_bold"
             android:text="@string/text_price_product"
             android:textColor="@color/black"
             android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_name_product"
             app:layout_constraintTop_toBottomOf="@+id/tv_name_product" />
+
+        <TextView
+            android:id="@+id/tv_status_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="11dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="Còn hàng"
+            android:textColor="@color/GreenPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
