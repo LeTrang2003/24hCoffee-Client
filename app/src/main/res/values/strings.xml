@@ -29,4 +29,12 @@
     <string name="thontintaikhoan">Thông tin tài khoản</string>
     <string name="hoac_dang_nhap">Hoặc đăng nhập</string>
     <string name="them">Thêm</string>
+    <!-- TODO: HOME -->
+    <string name="content_search">Tìm kiếm sản phẩm</string>
+    <string name="content_see_all">Xem tất cả</string>
+    <string name="content_product">GỢI Ý SẢN PHẨM</string>
+    <string name="content_category">DANH MỤC</string>
+    <!-- TODO: PRODUCTS -->
+    <string name="text_name_product">CÀ PHÊ MUỐI</string>
+    <string name="text_price_product">35.000đ</string>
 </resources>

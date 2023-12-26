@@ -1,4 +1,4 @@
-package com.example.a24h_coffee_client.view.fragment;
+package com.example.a24h_coffee_client.view.fragment.table;
 
 import android.os.Bundle;
 
