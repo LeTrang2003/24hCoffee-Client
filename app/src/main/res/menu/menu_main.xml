@@ -7,7 +7,7 @@
         tools:ignore="HardcodedText" />
     <item android:id="@+id/menu_table"
         android:title="Bàn"
-        android:icon="@drawable/ic_table_menu"
+        android:icon="@drawable/ic_quan_ly_ban_24_black"
         tools:ignore="HardcodedText" />
     <item android:id="@+id/menu_notification"
         android:title="Thông báo"

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/GrayPrimary"
-    tools:context=".view.fragment.SettingsFragment">
+    android:background="@color/GrayPrimary">
 
 
     <ScrollView
@@ -214,7 +213,6 @@
                         android:text="Đăng xuất"
                         android:textColor="@color/BlackPrimary"
                         android:textSize="16sp"
-                        app:drawableEndCompat="@drawable/ic_arrow_right_s_line"
                         app:drawableStartCompat="@drawable/ic_logout_circle_line"
                         tools:ignore="HardcodedText" />
 
