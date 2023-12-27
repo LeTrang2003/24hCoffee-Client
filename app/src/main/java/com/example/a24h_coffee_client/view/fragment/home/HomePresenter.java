@@ -16,6 +16,7 @@ import com.example.a24h_coffee_client.view.fragment.home.response.ResponseCatego
 import com.example.a24h_coffee_client.view.fragment.home.response.ResponseProduct;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,7 +35,7 @@ public class HomePresenter implements HomeContract.Presenter, Handler.Callback{
             @Override
             public void onResponse(@NonNull Call<ResponseBanner> call, @NonNull Response<ResponseBanner> response) {
                 assert response.body() != null;
-                if (response.body().getStatus().equals(AppConstants.SUCCESS)){
+                if (AppConstants.SUCCESS.equals(Objects.requireNonNull(response.body()).getStatus())){
                     view.onListBanner(response.body().getBanners());
                 }
             }
@@ -52,7 +53,7 @@ public class HomePresenter implements HomeContract.Presenter, Handler.Callback{
             @Override
             public void onResponse(@NonNull Call<ResponseCategory> call, @NonNull Response<ResponseCategory> response) {
                 assert response.body() != null;
-                if (response.body().getStatus().equals(AppConstants.SUCCESS)){
+                if (AppConstants.SUCCESS.equals(Objects.requireNonNull(response.body()).getStatus())){
                     view.onListCategory(response.body().getCategories());
                 }
             }
@@ -70,7 +71,7 @@ public class HomePresenter implements HomeContract.Presenter, Handler.Callback{
             @Override
             public void onResponse(@NonNull Call<ResponseProduct> call, @NonNull Response<ResponseProduct> response) {
                 assert response.body() != null;
-                if (response.body().getStatus().equals(AppConstants.SUCCESS)){
+                if (AppConstants.SUCCESS.equals(Objects.requireNonNull(response.body()).getStatus())){
                     view.onListProduct(response.body().getProducts());
                 }
             }

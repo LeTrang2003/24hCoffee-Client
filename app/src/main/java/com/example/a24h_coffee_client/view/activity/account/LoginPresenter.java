@@ -28,12 +28,12 @@ public class LoginPresenter implements LoginContract.Presenter{
             public void onResponse(@NonNull Call<ResponseUser> call, @NonNull Response<ResponseUser> response) {
                 if (response.isSuccessful()){
                     if (AppConstants.SUCCESS.equals(Objects.requireNonNull(response.body()).getStatus())){
-                        mView.onMessage(AppConstants.SUCCESS);
+                        mView.onMessage(AppConstants.SUCCESS, response.body().getUser());
                     }else {
-                        mView.onMessage(AppConstants.ON_FAILURE_LOGIN);
+                        mView.onMessage(AppConstants.ON_FAILURE_LOGIN, null);
                     }
                 }else {
-                    mView.onMessage(AppConstants.ON_FAILURE_LOGIN);
+                    mView.onMessage(AppConstants.ON_FAILURE_LOGIN, null);
                 }
             }
 

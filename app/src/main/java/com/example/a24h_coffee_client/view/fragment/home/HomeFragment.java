@@ -75,7 +75,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @Override
     public void onListProduct(List<Product> products) {
-         adapterProduct = new AdapterProduct(products);
+        adapterProduct = new AdapterProduct(products);
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         mBinding.rcvProduct.setLayoutManager(layoutManager);
         mBinding.rcvProduct.setAdapter(adapterProduct);
