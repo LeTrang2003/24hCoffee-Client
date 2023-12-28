@@ -1,10 +1,13 @@
 package com.example.a24h_coffee_client.network;
 
 public class ManagerUrl {
-    public static final String BASE_URL = "http://192.168.43.120:3000/api/";
+    public static final String BASE_URL = "http://192.168.1.25:3000/api/";
 
     // account
     public static final String LOGIN = "login";
+    //user
+    public static final String UPDATE_INF_USER = "update-user";
+    public static final String READ_USER = "read-user";
     // table
     public static final String READ_TABLE = "tables";
     // product

@@ -20,6 +20,16 @@ public interface ApiService {
     Call<ResponseUser> login(@Field("userName") String userName,
                              @Field("password") String password);
 
+    // user
+    @POST(ManagerUrl.UPDATE_INF_USER)
+    @FormUrlEncoded
+    Call<ResponseUser> updateUser (@Field("userName") String userName,
+                                   @Field("name") String name,
+                                   @Field("image") String image);
+    @POST(ManagerUrl.READ_USER)
+    @FormUrlEncoded
+    Call<ResponseUser> readUser (@Field("userName") String userName);
+
     // banner
     @GET(ManagerUrl.READ_BANNER)
     Call<ResponseBanner> readBanner();

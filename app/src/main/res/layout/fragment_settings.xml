@@ -63,13 +63,6 @@
                         app:layout_constraintEnd_toEndOf="@+id/view"
                         app:layout_constraintStart_toStartOf="@+id/view"
                         app:layout_constraintTop_toTopOf="@+id/view" />
-                    <ImageView
-                        android:id="@+id/ivChangeImage"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_change_backgound"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -83,19 +76,8 @@
                     android:textColor="@color/BlackPrimary"
                     android:textSize="20sp"
                     tools:ignore="HardcodedText" />
-
                 <TextView
-                    android:id="@+id/tvEmailUser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="person@gmail.com"
-                    android:textColor="@color/Gray1Primary"
-                    android:textSize="16sp"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/tvRole"
+                    android:id="@+id/tvChucVu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -103,10 +85,11 @@
                     android:fontFamily="@font/inter_bold"
                     android:paddingStart="30dp"
                     android:paddingEnd="30dp"
-                    android:text="Admin"
+                    android:text="Nhân Viên"
                     android:textColor="@color/BlackPrimary"
                     android:textSize="16sp"
                     tools:ignore="HardcodedText" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -120,6 +103,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/viewBgr">
             <LinearLayout
+                android:id="@+id/layoutContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -145,6 +129,7 @@
             </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layoutUpdateInfor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -171,6 +156,7 @@
                         android:background="#DEDEDE" />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/layoutChangePass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -198,6 +184,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layoutLogout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
