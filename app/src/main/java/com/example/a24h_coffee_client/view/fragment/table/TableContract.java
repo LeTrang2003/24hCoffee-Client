@@ -8,6 +8,7 @@ public interface TableContract {
 
     interface View {
         void onListTable(List<Table> tables);
+        void nextActivity(int tableId);
     }
 
     interface Presenter {
