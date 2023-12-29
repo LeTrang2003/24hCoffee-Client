@@ -10,7 +10,7 @@
         <item name="android:statusBarColor">@color/GrayPrimary</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
     </style>
-    <!--  Theme MainActivity-->
+    <!--  Theme ProductActivity-->
     <style name="MainActivityTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:statusBarColor">@color/GrayPrimary</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>

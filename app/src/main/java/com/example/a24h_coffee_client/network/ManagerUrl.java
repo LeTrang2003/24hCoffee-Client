@@ -1,7 +1,8 @@
 package com.example.a24h_coffee_client.network;
 
 public class ManagerUrl {
-    public static final String BASE_URL = "http://192.168.1.25:3000/api/";
+
+    public static final String BASE_URL = "http://172.20.10.5:3000/api/";
 
     // account
     public static final String LOGIN = "login";
@@ -19,4 +20,7 @@ public class ManagerUrl {
     // bill
     public static final String INSERT_BILL = "insert/bill";
     // notification
+    // bill detail
+    public static final String READ_TABLE_BILL = "table/bill/{tableID}";
+    public static final String READ_DETAIL_BILL = "detail/bills/{billID}";
 }

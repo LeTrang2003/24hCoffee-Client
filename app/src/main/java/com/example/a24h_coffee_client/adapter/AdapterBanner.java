@@ -26,6 +26,9 @@ public class AdapterBanner extends RecyclerView.Adapter<AdapterBanner.viewHolder
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
         Banner banner = mList.get(position);
+        if (banner == null){
+            return;
+        }
         holder.bind(banner);
     }
 
