@@ -37,4 +37,5 @@
     <!-- TODO: PRODUCTS -->
     <string name="text_name_product">CÀ PHÊ MUỐI</string>
     <string name="text_price_product">35.000đ</string>
+    <string name="text_stt_product">Còn hàng</string>
 </resources>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/GrayPrimary"
     tools:context=".view.activity.contact.ContactActivity">
 
     <androidx.cardview.widget.CardView
@@ -36,7 +37,7 @@
                 android:text="LIÊN HỆ"
                 android:fontFamily="@font/inter_bold"
                 android:textColor="@color/BrowPrimary"
-                android:textSize="17sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/ivBackContact"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

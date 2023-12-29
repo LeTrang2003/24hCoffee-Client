@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.example.a24h_coffee_client.R;
 import com.example.a24h_coffee_client.constant.AppConstants;
 import com.example.a24h_coffee_client.databinding.FragmentSettingsBinding;
@@ -48,7 +49,10 @@ public class SettingsFragment extends Fragment {
         User user = new Gson().fromJson(userJson, User.class);
         String fullName = user.getName();
         String image = user.getImage();
-        mBinding.tvNameUser.setText(fullName);;
+        mBinding.tvNameUser.setText(fullName);
+        Glide.with(view.getContext())
+                        .load(image)
+                                .into(mBinding.civUser);
         setListener();
     }
 
