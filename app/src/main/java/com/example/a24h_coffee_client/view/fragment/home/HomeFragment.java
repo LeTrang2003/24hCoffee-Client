@@ -1,5 +1,8 @@
 package com.example.a24h_coffee_client.view.fragment.home;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,15 +17,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.a24h_coffee_client.R;
 import com.example.a24h_coffee_client.adapter.AdapterBanner;
 import com.example.a24h_coffee_client.adapter.AdapterCategory;
 import com.example.a24h_coffee_client.adapter.AdapterProduct;
+import com.example.a24h_coffee_client.constant.AppConstants;
 import com.example.a24h_coffee_client.databinding.FragmentHomeBinding;
 import com.example.a24h_coffee_client.model.Banner;
 import com.example.a24h_coffee_client.model.Category;
 import com.example.a24h_coffee_client.model.Product;
+import com.example.a24h_coffee_client.model.User;
 import com.example.a24h_coffee_client.utils.DepthPageTransformer;
+import com.example.a24h_coffee_client.view.activity.search.SearchActivity;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +61,15 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mPresenter.getListBanner();
         mPresenter.getListCategories();
         mPresenter.getListProduct();
+        mBinding.etSearch.setOnClickListener(view1 -> nextSearch());
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(AppConstants.PREFS_NAME, Context.MODE_PRIVATE);
+        String username = sharedPreferences.getString(AppConstants.KEY_USERNAME, "");
+        String userJson = sharedPreferences.getString(AppConstants.KEY_USER, "");
+        User user = new Gson().fromJson(userJson, User.class);
+        String image = user.getImage();
+        Glide.with(view.getContext())
+                .load(image)
+                .into(mBinding.civUserHome);
     }
 
     @Override
@@ -96,6 +113,10 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
             adapterProduct.setList(productList);
         }
+    }
 
+    private void nextSearch(){
+        Intent intent = new Intent(getContext(), SearchActivity.class);
+        startActivity(intent);
     }
 }
