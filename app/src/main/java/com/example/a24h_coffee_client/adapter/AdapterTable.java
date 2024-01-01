@@ -15,14 +15,17 @@ import com.example.a24h_coffee_client.databinding.ItemBannerBinding;
 import com.example.a24h_coffee_client.databinding.ItemTableBinding;
 import com.example.a24h_coffee_client.model.Banner;
 import com.example.a24h_coffee_client.model.Table;
+import com.example.a24h_coffee_client.view.fragment.table.TableContract;
 
 import java.util.List;
 
 public class AdapterTable extends RecyclerView.Adapter<AdapterTable.viewHolder> {
     private final List<Table> mList;
+    private final TableContract.View mView;
 
-    public AdapterTable(List<Table> list) {
+    public AdapterTable(List<Table> list, TableContract.View mView) {
         this.mList = list;
+        this.mView = mView;
     }
 
     @NonNull
@@ -35,7 +38,11 @@ public class AdapterTable extends RecyclerView.Adapter<AdapterTable.viewHolder> 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
         Table table = mList.get(position);
+        if (table == null){
+            return;
+        }
         holder.bind(table);
+        holder.binding.btnTypeProduct.setOnClickListener(view -> mView.nextActivity(table.getId()));
     }
 
     @Override
