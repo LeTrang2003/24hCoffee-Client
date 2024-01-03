@@ -20,6 +20,9 @@ public class ManagerUrl {
     // bill
     public static final String INSERT_BILL = "insert/bill";
     // notification
+    public static final String READ_NOTIFICATION = "notifications";
+    public static final String INSERT_NOTIFICATION = "insert/notification";
+    public static final String UPDATE_NOTIFICATION = "update/notification";
     // bill detail
     public static final String READ_TABLE_BILL = "table/bill/{tableID}";
     public static final String READ_DETAIL_BILL = "detail/bills/{billID}";

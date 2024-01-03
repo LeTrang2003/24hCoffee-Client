@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.example.a24h_coffee_client.databinding.ActivityTableDetailBinding;
 import com.example.a24h_coffee_client.model.BillDetail;
 import com.example.a24h_coffee_client.model.TableBill;
 import com.example.a24h_coffee_client.utils.FormatUtils;
+import com.example.a24h_coffee_client.view.activity.product.ProductActivity;
 
 import java.util.List;
 
@@ -37,6 +39,7 @@ public class TableDetailActivity extends AppCompatActivity implements TableDetai
 
     private void onClick() {
         mBinding.btnBackTableDetail.setOnClickListener(view -> onBackPressed());
+        mBinding.tvAddProductTableDetail.setOnClickListener(view -> startActivity(new Intent(this, ProductActivity.class)));
     }
 
     public void initPresenter() {
@@ -50,13 +53,13 @@ public class TableDetailActivity extends AppCompatActivity implements TableDetai
            mBinding.tvNameTableDetail.setText(AppConstants.TABLE + tableBill.getStt());
            mBinding.tvStatusTableDetail.setText(tableBill.getStatusOrder());
            mBinding.tvTimeInBillDetail.setText(FormatUtils.formatDate(tableBill.getTimeIn()));
-           mBinding.btnAddBillTableDetail.setText("Thanh toán");
+           mBinding.tvOder.setText("Thanh toán");
            mPresenter.getListBillDetail(tableBill.getId());
        }else {
            mBinding.tvNameTableDetail.setText(AppConstants.TABLE + tableBill.getStt());
            mBinding.tvStatusTableDetail.setText("Còn trống");
            mBinding.layoutTimeTableDetail.setVisibility(View.GONE);
-           mBinding.btnAddBillTableDetail.setText("Đặt bàn");
+           mBinding.tvOder.setText("Đặt bàn");
        }
     }
 
@@ -67,5 +70,10 @@ public class TableDetailActivity extends AppCompatActivity implements TableDetai
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         mBinding.rcvTableDetail.setLayoutManager(layoutManager);
         mBinding.rcvTableDetail.setAdapter(adapterBillDetail);
+        double sumPrice = 0;
+        for (BillDetail billDetail : billDetails){
+            sumPrice += billDetail.getPriceProduct() * billDetail.getQuantityProduct();
+        }
+        mBinding.tvPriceOrder.setText(FormatUtils.formatCurrency(sumPrice));
     }
 }

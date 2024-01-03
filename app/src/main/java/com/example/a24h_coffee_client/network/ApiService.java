@@ -6,6 +6,7 @@ import com.example.a24h_coffee_client.view.activity.table.response.ResponseTable
 import com.example.a24h_coffee_client.view.fragment.home.response.ResponseBanner;
 import com.example.a24h_coffee_client.view.fragment.home.response.ResponseCategory;
 import com.example.a24h_coffee_client.view.fragment.home.response.ResponseProduct;
+import com.example.a24h_coffee_client.view.fragment.notification.ResponseNotification;
 import com.example.a24h_coffee_client.view.fragment.table.ResponseTable;
 
 import retrofit2.Call;
@@ -61,4 +62,18 @@ public interface ApiService {
     Call<ResponseTableBill> readTableBill(@Path("tableID") int tableID);
     @GET(ManagerUrl.READ_DETAIL_BILL)
     Call<ResponseBillDetail> readDetailBill(@Path("billID") String billID);
+
+    // notification
+    @POST(ManagerUrl.READ_NOTIFICATION)
+    @FormUrlEncoded
+    Call<ResponseNotification> readNotification(@Field("userID") String userId);
+
+    @POST(ManagerUrl.INSERT_NOTIFICATION)
+    @FormUrlEncoded
+    Call<ResponseNotification> insertNotification(@Field("content") String content,
+                                                  @Field("userId") String userId);
+
+    @POST(ManagerUrl.UPDATE_NOTIFICATION)
+    @FormUrlEncoded
+    Call<ResponseNotification> updateNotification(@Field("userID") String userId);
 }
