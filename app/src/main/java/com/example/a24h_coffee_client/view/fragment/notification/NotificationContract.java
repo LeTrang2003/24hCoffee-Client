@@ -4,7 +4,7 @@ import com.example.a24h_coffee_client.model.Notification;
 
 import java.util.List;
 
-public class NotificationContract {
+public interface NotificationContract {
     interface View {
         void onListNotification(List<Notification> notifications);
     }
@@ -12,5 +12,6 @@ public class NotificationContract {
     interface Presenter {
         void getListNotification(String userId);
         void updateNotification(String userId);
+        void deleteNotification(int id);
     }
 }

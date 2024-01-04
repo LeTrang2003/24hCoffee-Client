@@ -29,6 +29,7 @@ public class ManagerUrl {
     public static final String READ_NOTIFICATION = "notifications";
     public static final String INSERT_NOTIFICATION = "insert/notification";
     public static final String UPDATE_NOTIFICATION = "update/notification";
+    public static final String DELETE_NOTIFICATION = "delete/notification/{id}";
 
     // bill detail
     public static final String READ_TABLE_BILL = "table/bill/{tableID}";

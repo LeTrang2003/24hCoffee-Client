@@ -65,4 +65,25 @@ public class NotificationPresenter implements NotificationContract.Presenter{
             }
         });
     }
+
+    @Override
+    public void deleteNotification(int id) {
+        ApiClient.getClient().create(ApiService.class).deleteNotification(id).enqueue(new Callback<ResponseNotification>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseNotification> call, @NonNull Response<ResponseNotification> response) {
+                if (response.isSuccessful()){
+                    if (!AppConstants.SUCCESS.equals(Objects.requireNonNull(response.body()).getStatus())){
+                        Log.d("ER", "error");
+                    }
+                }else {
+                    Log.d("ER", "error");
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseNotification> call, @NonNull Throwable t) {
+
+            }
+        });
+    }
 }

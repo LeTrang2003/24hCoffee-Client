@@ -90,4 +90,7 @@ public interface ApiService {
     @POST(ManagerUrl.UPDATE_NOTIFICATION)
     @FormUrlEncoded
     Call<ResponseNotification> updateNotification(@Field("userID") String userId);
+
+    @GET(ManagerUrl.DELETE_NOTIFICATION)
+    Call<ResponseNotification> deleteNotification(@Path("id") int id);
 }

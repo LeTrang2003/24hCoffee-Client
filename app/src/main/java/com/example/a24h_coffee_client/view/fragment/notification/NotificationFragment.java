@@ -7,7 +7,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,7 @@ import com.example.a24h_coffee_client.adapter.AdapterNotification;
 import com.example.a24h_coffee_client.constant.AppConstants;
 import com.example.a24h_coffee_client.databinding.FragmentNotificationBinding;
 import com.example.a24h_coffee_client.model.Notification;
+import com.example.a24h_coffee_client.utils.SwipeToDeleteCallback;
 
 import java.util.List;
 
@@ -51,11 +54,12 @@ public class NotificationFragment extends Fragment implements NotificationContra
 
     @Override
     public void onListNotification(List<Notification> notifications) {
-        AdapterNotification adapterNotification = new AdapterNotification(notifications);
+        AdapterNotification adapterNotification = new AdapterNotification(notifications, mPresenter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mBinding.rcvNotification.setLayoutManager(layoutManager);
         mBinding.rcvNotification.setAdapter(adapterNotification);
-
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeToDeleteCallback(adapterNotification));
+        itemTouchHelper.attachToRecyclerView(mBinding.rcvNotification);
         mPresenter.updateNotification(getUsername());
     }
 }

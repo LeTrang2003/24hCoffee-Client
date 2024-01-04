@@ -15,17 +15,20 @@ import com.example.a24h_coffee_client.databinding.ItemTableBinding;
 import com.example.a24h_coffee_client.model.Notification;
 import com.example.a24h_coffee_client.model.Table;
 import com.example.a24h_coffee_client.utils.FormatUtils;
+import com.example.a24h_coffee_client.view.fragment.notification.NotificationContract;
 import com.example.a24h_coffee_client.view.fragment.table.TableContract;
 
 import java.util.List;
 
 public class AdapterNotification extends RecyclerView.Adapter<AdapterNotification.viewHolder> {
     private final List<Notification> mList;
+    private final NotificationContract.Presenter mPresenter;
 
-
-    public AdapterNotification(List<Notification> list) {
-        this.mList = list;
+    public AdapterNotification(List<Notification> mList, NotificationContract.Presenter mPresenter) {
+        this.mList = mList;
+        this.mPresenter = mPresenter;
     }
+
 
     @NonNull
     @Override
@@ -41,6 +44,12 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
             return;
         }
         holder.bind(notification);
+    }
+
+    public void deleteItem(int position) {
+        mPresenter.deleteNotification(mList.get(position).getId());
+        mList.remove(position);
+        notifyItemRemoved(position);
     }
 
     @Override
