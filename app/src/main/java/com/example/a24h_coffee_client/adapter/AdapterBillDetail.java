@@ -54,7 +54,7 @@ public class AdapterBillDetail extends RecyclerView.Adapter<AdapterBillDetail.vi
 
         @SuppressLint("SetTextI18n")
         public void bind(BillDetail billDetail) {
-          Glide.with(binding.getRoot()).load(billDetail.getImageProduct()).into(binding.ivProductBillr);
+          Glide.with(binding.getRoot()).load(billDetail.getImageProduct()).centerCrop().into(binding.ivProductBillr);
           binding.tvNameProductIvProductBillDetail.setText(billDetail.getNameProduct());
           binding.tvPriceBillDetail.setText(FormatUtils.formatCurrency(billDetail.getPriceProduct()));
           binding.tvQuantityBillDetail.setText("x"+billDetail.getQuantityProduct());

@@ -7,6 +7,111 @@
     android:background="@color/GrayPrimary"
     tools:context=".view.activity.updateinfor.UpdateInforActivity">
 
+    <LinearLayout
+        android:id="@+id/layoutText13"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:orientation="vertical"
+        android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutText12"
+        tools:ignore="UselessLeaf">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tv_sex"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:boxStrokeColor="@color/BrowPrimary"
+            app:hintTextColor="@color/BrowPrimary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_gr_gioi_tinh_nd"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/inter_regular"
+                android:hint="Giới tính"
+                android:textColor="@color/BlackPrimary"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutText12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:orientation="vertical"
+        android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutText1"
+        tools:ignore="UselessLeaf">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tv_date"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:boxStrokeColor="@color/BrowPrimary"
+            app:hintTextColor="@color/BrowPrimary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_date_line_24_black"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/inter_regular"
+                android:hint="Ngày sinh"
+                android:textColor="@color/BlackPrimary"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:orientation="vertical"
+        android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutText"
+        tools:ignore="UselessLeaf">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tv_phone"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:boxStrokeColor="@color/BrowPrimary"
+            app:hintTextColor="@color/BrowPrimary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_phone_line"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/inter_regular"
+                android:hint="Số điện thoại"
+                android:textColor="@color/BlackPrimary"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView50"
         android:layout_width="match_parent"
@@ -91,8 +196,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:orientation="vertical"
         android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -125,14 +230,14 @@
         android:id="@+id/btn_save_up_infor"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/bgr_btn_brow1_rd5"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutText">
+        app:layout_constraintTop_toBottomOf="@+id/layoutText13">
 
         <TextView
             android:id="@+id/tv11111"

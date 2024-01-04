@@ -1,5 +1,6 @@
 package com.example.a24h_coffee_client.view.fragment.home;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,7 +13,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -52,8 +55,19 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         // Inflate the layout for this fragment
         mBinding = FragmentHomeBinding.inflate(inflater, container, false);
         mPresenter = new HomePresenter(this);
+        onClick();
         return mBinding.getRoot();
     }
+    @SuppressLint("ClickableViewAccessibility")
+    private void onClick() {
+        mBinding.etSearch.setOnTouchListener((view1, motionEvent) -> {
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                startActivity(new Intent(getContext(), SearchActivity.class));
+            }
+            return false;
+        });
+    }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -61,9 +75,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mPresenter.getListBanner();
         mPresenter.getListCategories();
         mPresenter.getListProduct();
-        mBinding.etSearch.setOnClickListener(view1 -> nextSearch());
+
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(AppConstants.PREFS_NAME, Context.MODE_PRIVATE);
-        String username = sharedPreferences.getString(AppConstants.KEY_USERNAME, "");
         String userJson = sharedPreferences.getString(AppConstants.KEY_USER, "");
         User user = new Gson().fromJson(userJson, User.class);
         String image = user.getImage();
@@ -96,7 +109,10 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         mBinding.rcvProduct.setLayoutManager(layoutManager);
         mBinding.rcvProduct.setAdapter(adapterProduct);
+        mBinding.rcvProduct.setNestedScrollingEnabled(false);
         mProductList = products;
+        Log.d("TAG", "onListProduct: " + products.toString() + products.size());
+        Log.d("TAG", "onListProduct: " + products.size());
     }
 
     @Override
@@ -113,10 +129,5 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
             adapterProduct.setList(productList);
         }
-    }
-
-    private void nextSearch(){
-        Intent intent = new Intent(getContext(), SearchActivity.class);
-        startActivity(intent);
     }
 }

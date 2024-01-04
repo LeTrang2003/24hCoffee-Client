@@ -46,7 +46,7 @@ public class AdapterBanner extends RecyclerView.Adapter<AdapterBanner.viewHolder
         }
 
         public void bind(Banner banner) {
-          Glide.with(binding.getRoot()).load(banner.getAnh()).into(binding.ivBanner);
+          Glide.with(binding.getRoot()).load(banner.getAnh()).centerCrop().into(binding.ivBanner);
         }
     }
 }

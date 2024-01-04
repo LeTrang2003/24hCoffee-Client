@@ -59,6 +59,7 @@ public class AdapterSearch extends RecyclerView.Adapter<AdapterSearch.SearchView
         public void bind(Product product){
             Glide.with(itemView.getContext())
                     .load(product.getImage())
+                    .centerCrop()
                     .into(searchBinding.ivProductSearch);
             searchBinding.tvNameProductSearch.setText(product.getName());
             searchBinding.tvPriceSearch.setText(FormatUtils.formatCurrency(product.getPrice()));

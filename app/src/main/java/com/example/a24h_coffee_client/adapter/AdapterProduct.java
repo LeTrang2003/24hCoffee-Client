@@ -64,7 +64,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         }
         @SuppressLint("SetTextI18n")
         public void bind(Product product){
-            Glide.with(binding.getRoot()).load(product.getImage()).into(binding.ivProductGrid);
+            Glide.with(binding.getRoot()).load(product.getImage()).centerCrop().into(binding.ivProductGrid);
             binding.tvNameProduct.setText(product.getName());
             binding.tvPriceProduct.setText(FormatUtils.formatCurrency(product.getPrice()));
 
