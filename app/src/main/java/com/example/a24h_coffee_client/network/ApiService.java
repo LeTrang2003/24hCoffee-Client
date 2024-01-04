@@ -35,6 +35,11 @@ public interface ApiService {
     @FormUrlEncoded
     Call<ResponseUser> readUser (@Field("userName") String userName);
 
+    @POST(ManagerUrl.CHANGE_PASS)
+    @FormUrlEncoded
+    Call<ResponseUser> changePassword (@Field("userName") String userName,
+                                      @Field("password") String password);
+
     // banner
     @GET(ManagerUrl.READ_BANNER)
     Call<ResponseBanner> readBanner();

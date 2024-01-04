@@ -52,4 +52,14 @@ public class FormatUtils {
         return dateFormat.format(new Date());
     }
 
+    /**
+     * Kiểm tra tính hợp lệ của mật khẩu.
+     *
+     * @param password Mật khẩu cần kiểm tra.
+     * @return `true` nếu mật khẩu hợp lệ, ngược lại trả về `false`.
+     */
+    public static boolean isPasswordValid(String password) {
+        return password != null;
+    }
+
 }

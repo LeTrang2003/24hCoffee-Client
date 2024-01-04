@@ -11,6 +11,9 @@ public class ManagerUrl {
     public static final String UPDATE_INF_USER = "update-user";
     public static final String READ_USER = "read-user";
 
+    // setting
+    public static final String CHANGE_PASS = "resetPass-user";
+
     // table
     public static final String READ_TABLE = "tables";
 
