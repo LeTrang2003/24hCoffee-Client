@@ -36,6 +36,7 @@
                 android:id="@+id/iv_product_grid"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/product_demo" />
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

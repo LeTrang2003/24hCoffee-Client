@@ -1,5 +1,7 @@
 package com.example.a24h_coffee_client.view.fragment.setting;
 
+import androidx.annotation.NonNull;
+
 import com.example.a24h_coffee_client.constant.AppConstants;
 import com.example.a24h_coffee_client.network.ApiClient;
 import com.example.a24h_coffee_client.network.ApiService;
@@ -22,8 +24,9 @@ public class SettingPresenter implements SettingContract.Presenter{
     public void getUser(String userName) {
         ApiClient.getClient().create(ApiService.class).readUser(userName).enqueue(new Callback<ResponseUser>() {
             @Override
-            public void onResponse(Call<ResponseUser> call, Response<ResponseUser> response) {
+            public void onResponse(@NonNull Call<ResponseUser> call, @NonNull Response<ResponseUser> response) {
                 if (response.isSuccessful()){
+                    assert response.body() != null;
                     if (AppConstants.SUCCESS.equals(response.body().getStatus())){
                         view.updateUI(response.body().getUser());
                     }

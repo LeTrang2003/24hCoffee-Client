@@ -20,12 +20,13 @@ import com.example.a24h_coffee_client.adapter.AdapterTable;
 import com.example.a24h_coffee_client.databinding.FragmentTableBinding;
 import com.example.a24h_coffee_client.model.Table;
 import com.example.a24h_coffee_client.view.activity.table.TableDetailActivity;
+import com.google.gson.Gson;
 
 import java.util.List;
 
 public class TableFragment extends Fragment implements TableContract.View {
     private FragmentTableBinding mBinding;
-
+    private TableContract.Presenter mPresenter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +42,7 @@ public class TableFragment extends Fragment implements TableContract.View {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TableContract.Presenter mPresenter = new TablePresenter(this);
-        mPresenter.getListTable();
+        mPresenter = new TablePresenter(this);
     }
 
     @Override
@@ -54,9 +54,15 @@ public class TableFragment extends Fragment implements TableContract.View {
     }
 
     @Override
-    public void nextActivity(int tableId) {
+    public void nextActivity(Table table) {
         Intent intent = new Intent(getContext(), TableDetailActivity.class);
-        intent.putExtra("tableID", tableId);
+        intent.putExtra("table", new Gson().toJson(table));
         startActivity(intent);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mPresenter.getListTable();
     }
 }

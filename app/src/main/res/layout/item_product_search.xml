@@ -28,6 +28,7 @@
                 android:id="@+id/iv_product_search"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/product_demo" />
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

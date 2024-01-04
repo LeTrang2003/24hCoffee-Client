@@ -2,6 +2,8 @@ package com.example.a24h_coffee_client.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Objects;
+
 public class Product {
     private int id;
     @SerializedName("anhSanPham")
@@ -61,5 +63,30 @@ public class Product {
 
     public void setCategoryID(int categoryID) {
         this.categoryID = categoryID;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id == product.id && Double.compare(product.price, price) == 0 && categoryID == product.categoryID && Objects.equals(image, product.image) && Objects.equals(name, product.name) && Objects.equals(status, product.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, image, name, price, status, categoryID);
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", image='" + image + '\'' +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", status='" + status + '\'' +
+                ", categoryID=" + categoryID +
+                '}';
     }
 }
