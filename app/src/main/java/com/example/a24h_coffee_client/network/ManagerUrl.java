@@ -6,24 +6,32 @@ public class ManagerUrl {
 
     // account
     public static final String LOGIN = "login";
+
     //user
     public static final String UPDATE_INF_USER = "update-user";
     public static final String READ_USER = "read-user";
+
     // table
     public static final String READ_TABLE = "tables";
+
     // product
     public static final String READ_PRODUCT = "products";
+
     // banner
     public static final String READ_BANNER = "banners";
+
     // category
     public static final String READ_CATEGORY = "category";
     // bill
     public static final String INSERT_BILL = "insert/bill";
+    public static final String UPDATE_BILL = "update/bill";
     // notification
     public static final String READ_NOTIFICATION = "notifications";
     public static final String INSERT_NOTIFICATION = "insert/notification";
     public static final String UPDATE_NOTIFICATION = "update/notification";
+
     // bill detail
     public static final String READ_TABLE_BILL = "table/bill/{tableID}";
     public static final String READ_DETAIL_BILL = "detail/bills/{billID}";
+    public static final String INSERT_BILL_DETAIL = "insert/bill/detail";
 }

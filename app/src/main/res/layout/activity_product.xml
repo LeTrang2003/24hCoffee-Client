@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/GrayPrimary"
-    tools:context=".view.activity.product.ProductActivity">
+    tools:context=".view.activity.product.ProductSelectActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView1"
@@ -42,6 +42,8 @@
                 android:textColor="@color/BrowPrimary"
                 android:textSize="17sp" />
         </androidx.appcompat.widget.Toolbar>
+
+
     </androidx.cardview.widget.CardView>
 
     <EditText

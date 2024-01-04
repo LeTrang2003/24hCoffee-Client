@@ -121,6 +121,14 @@
                 android:text="Quản lý bàn"
                 android:textColor="@color/BrowPrimary"
                 android:textSize="17sp" />
+
+            <ImageView
+                android:id="@+id/iv_swap_table"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_swap" />
         </androidx.appcompat.widget.Toolbar>
     </androidx.cardview.widget.CardView>
 

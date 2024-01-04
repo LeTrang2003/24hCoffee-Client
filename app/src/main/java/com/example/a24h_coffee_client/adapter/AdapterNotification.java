@@ -58,8 +58,13 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
 
         @SuppressLint("SetTextI18n")
         public void bind(Notification notification) {
+           if (notification.getStatusSee().equals("Chưa xem")){
+              binding.ivNotification.setBackgroundResource(R.drawable.ic_thong_bao_chua_xem);
+           }else {
+               binding.ivNotification.setBackgroundResource(R.drawable.ic_thong_bao_da_xem);
+           }
             binding.tvNoiDung.setText(notification.getContext());
-            binding.tvNgayThongBao.setText(FormatUtils.formatDate(notification.getDateCreate()));
+            binding.tvNgayThongBao.setText(FormatUtils.formatDateCreate(notification.getDateCreate()));
         }
     }
 }

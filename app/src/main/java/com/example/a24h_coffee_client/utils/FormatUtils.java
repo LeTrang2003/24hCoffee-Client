@@ -43,7 +43,7 @@ public class FormatUtils {
     }
 
     public static String formatDateCreate(Date date) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy", new Locale("vi", "VN"));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", new Locale("vi", "VN"));
         return dateFormat.format(date);
     }
 

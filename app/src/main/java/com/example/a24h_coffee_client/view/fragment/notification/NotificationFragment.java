@@ -41,7 +41,6 @@ public class NotificationFragment extends Fragment implements NotificationContra
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.getListNotification(getUsername());
-        mPresenter.updateNotification(getUsername());
     }
 
     public String getUsername() {
@@ -56,5 +55,7 @@ public class NotificationFragment extends Fragment implements NotificationContra
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mBinding.rcvNotification.setLayoutManager(layoutManager);
         mBinding.rcvNotification.setAdapter(adapterNotification);
+
+        mPresenter.updateNotification(getUsername());
     }
 }

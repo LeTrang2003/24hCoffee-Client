@@ -54,14 +54,28 @@ public interface ApiService {
     // bill
     @POST(ManagerUrl.INSERT_BILL)
     @FormUrlEncoded
-    Call<ResponseUser> insertBill(@Field("userName") String userName,
-                             @Field("password") String password);
+    Call<ResponseBillDetail> insertBill(@Field("id") String id,
+                                        @Field("tableID") int tableID,
+                                        @Field("userID") String userID);
+
+    @POST(ManagerUrl.UPDATE_BILL)
+    @FormUrlEncoded
+    Call<ResponseBillDetail> updateBill(@Field("billId") String billId,
+                                        @Field("tableId") int tableId,
+                                        @Field("timeOut") String timeOut,
+                                        @Field("datePayment") String datePayment);
 
     // bill detail
     @GET(ManagerUrl.READ_TABLE_BILL)
     Call<ResponseTableBill> readTableBill(@Path("tableID") int tableID);
     @GET(ManagerUrl.READ_DETAIL_BILL)
     Call<ResponseBillDetail> readDetailBill(@Path("billID") String billID);
+    @POST(ManagerUrl.INSERT_BILL_DETAIL)
+    @FormUrlEncoded
+    Call<ResponseBillDetail> insertBillDetail(@Field("quantity") int quantity,
+                                                @Field("intoMoney") double intoMoney,
+                                                @Field("productID") int productID,
+                                                @Field("billID") String billID);
 
     // notification
     @POST(ManagerUrl.READ_NOTIFICATION)

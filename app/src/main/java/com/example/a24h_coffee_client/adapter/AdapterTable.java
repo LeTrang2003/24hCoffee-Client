@@ -42,7 +42,7 @@ public class AdapterTable extends RecyclerView.Adapter<AdapterTable.viewHolder> 
             return;
         }
         holder.bind(table);
-        holder.binding.btnTypeProduct.setOnClickListener(view -> mView.nextActivity(table.getId()));
+        holder.binding.btnTypeProduct.setOnClickListener(view -> mView.nextActivity(table));
     }
 
     @Override
