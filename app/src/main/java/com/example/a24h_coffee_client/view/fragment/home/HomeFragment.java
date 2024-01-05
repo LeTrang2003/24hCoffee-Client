@@ -111,8 +111,6 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mBinding.rcvProduct.setAdapter(adapterProduct);
         mBinding.rcvProduct.setNestedScrollingEnabled(false);
         mProductList = products;
-        Log.d("TAG", "onListProduct: " + products.toString() + products.size());
-        Log.d("TAG", "onListProduct: " + products.size());
     }
 
     @Override

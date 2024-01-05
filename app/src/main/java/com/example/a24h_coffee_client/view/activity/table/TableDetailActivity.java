@@ -95,7 +95,11 @@ public class TableDetailActivity extends AppCompatActivity implements TableDetai
                 Toast.makeText(this, "Không có đồ uống để đặt bàn", Toast.LENGTH_SHORT).show();
             }
         }else {
-            mPresenter.paymentBill(mTableBill.getId(), getTable().getId(), String.valueOf(System.currentTimeMillis()), FormatUtils.formatDateCreate(new Date()));
+            mPresenter.paymentBill(mTableBill.getId(),
+                    getTable().getId(),
+                    FormatUtils.formatTimeOut(new Date()),
+                    FormatUtils.formatDatePayment(new Date()),
+                    FormatUtils.parseCurrency(mBinding.tvPriceOrder.getText().toString()));
         }
     }
 
@@ -155,7 +159,6 @@ public class TableDetailActivity extends AppCompatActivity implements TableDetai
     @Override
     public void onMessagePaymentBill() {
         mPresenter.insertNotification("Thanh toán thành công hóa đơn " + mTableBill.getId(), getUsername());
-
     }
 
     @Override

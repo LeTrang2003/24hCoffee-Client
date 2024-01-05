@@ -106,6 +106,7 @@
                     app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tv_pass_old"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_password_fill_24"
@@ -129,6 +130,7 @@
                     app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tv_pass_new"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_password_fill_24"
@@ -152,12 +154,13 @@
                     app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tv_pass_again"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_password_fill_24"
                         android:drawablePadding="10dp"
                         android:fontFamily="@font/inter_regular"
-                        android:hint="Mật khẩu mới"
+                        android:hint="Nhập lại mật khẩu mới"
                         android:inputType="textPassword"
                         android:textColor="@color/BlackPrimary"
                         android:textSize="16sp"

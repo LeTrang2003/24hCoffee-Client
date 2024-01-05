@@ -1,5 +1,10 @@
 package com.example.a24h_coffee_client.view.activity.changepass;
 
+import android.content.Context;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
 import com.example.a24h_coffee_client.constant.AppConstants;
 import com.example.a24h_coffee_client.model.User;
 import com.example.a24h_coffee_client.network.ApiClient;
@@ -16,74 +21,55 @@ import retrofit2.Response;
 
 public class ChangePassPresenter implements ChangePassContract.Presenter {
     private final ChangePassContract.View view;
-    private User user;
 
     public ChangePassPresenter(ChangePassContract.View view) {
         this.view = view;
     }
 
-
-
     @Override
-    public void changePassword(String passwordAgain) {
-        ApiClient.getClient().create(ApiService.class).changePassword(user.getUserName(), passwordAgain).enqueue(new Callback<ResponseUser>() {
+    public void changePassword(String passwordAgain, String userId) {
+        ApiClient.getClient().create(ApiService.class).changePassword(userId, passwordAgain).enqueue(new Callback<ResponseUser>() {
             @Override
-            public void onResponse(Call<ResponseUser> call, Response<ResponseUser> response) {
+            public void onResponse(@NonNull Call<ResponseUser> call, @NonNull Response<ResponseUser> response) {
                 if (response.isSuccessful()){
+                    assert response.body() != null;
                     if (AppConstants.SUCCESS.equals(Objects.requireNonNull(response.body().getStatus()))){
-                       view.onMessage(AppConstants.SUCCESS);
+                        view.onMessage("Đổi mật khẩu thành công");
+                        view.onUser(response.body().getUser());
                     }else{
                         view.onMessage(AppConstants.ON_FAILURE_CHANGE);
                     }
+                }else {
+                    view.onMessage(AppConstants.ON_FAILURE_CHANGE);
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseUser> call, Throwable t) {
+            public void onFailure(@NonNull Call<ResponseUser> call, @NonNull Throwable t) {
 
             }
         });
     }
 
-
-    public void getUser(){
-        String idUser = user.getUserName();
-        if (idUser != null){
-            ApiClient.getClient().create(ApiService.class).readUser(idUser).enqueue(new Callback<ResponseUser>() {
-                @Override
-                public void onResponse(Call<ResponseUser> call, Response<ResponseUser> response) {
-                    if (response.isSuccessful()){
-                        if (AppConstants.SUCCESS.equals(Objects.requireNonNull(response.body().getStatus()))){
-                            view.onMessage(AppConstants.SUCCESS);
-                        }else{
-                            view.onMessage(AppConstants.CALL_API_ERROR_MESSAGE);
-                        }
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<ResponseUser> call, Throwable t) {
-                }
-            });
-        }
-    }
-
     @Override
-    public boolean doChange(String password, String passNew, String passAgain) {
+    public boolean doChange(String password, String passNew, String passAgain, Context context) {
         if (!ValidateUtils.validateChangePasswordIsEmpty(password, passNew, passAgain)) {
             view.onMessage(AppConstants.ENTER_INFO);
             return false;
         }
-        if (!FormatUtils.isPasswordValid(password)) {
+
+        if (!ValidateUtils.isPasswordValid(password, context)) {
             view.onMessage(AppConstants.EMPTY_PASS);
             return false;
         }
-        if (!FormatUtils.isPasswordValid(passNew)) {
-            view.onMessage(AppConstants.EMPTY_PASSNEW);
-            return false;
-        }
+
         if (!ValidateUtils.validateChangePasswordEqual(passNew, passAgain)) {
             view.onMessage(AppConstants.PASS_NOT_DUPLICATES);
+            return false;
+        }
+
+        if (ValidateUtils.validatePasswordEqual(password, passNew)) {
+            view.onMessage(AppConstants.EMPTY_PASSNEW);
             return false;
         }
         return true;

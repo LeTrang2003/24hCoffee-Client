@@ -114,8 +114,8 @@ public class TableDetailPresenter implements TableDetailContract.Presenter {
     }
 
     @Override
-    public void paymentBill(String billId, int tableId, String timeOut, String datePayment) {
-        ApiClient.getClient().create(ApiService.class).updateBill(billId, tableId, timeOut, datePayment).enqueue(new Callback<ResponseBillDetail>() {
+    public void paymentBill(String billId, int tableId, String timeOut, String datePayment, double intoMoney) {
+        ApiClient.getClient().create(ApiService.class).updateBill(billId, tableId, timeOut, datePayment, intoMoney).enqueue(new Callback<ResponseBillDetail>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBillDetail> call, @NonNull Response<ResponseBillDetail> response) {
                 assert response.body() != null;

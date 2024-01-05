@@ -2,6 +2,8 @@ package com.example.a24h_coffee_client.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 public class User {
     @SerializedName("tenDangNhap")
     private String userName;
@@ -16,7 +18,7 @@ public class User {
     @SerializedName("dienThoai")
     private String phone;
     @SerializedName("ngaySinh")
-    private String date;
+    private Date date;
     @SerializedName("gioiTinh")
     private String sex;
 
@@ -68,11 +70,11 @@ public class User {
         this.phone = phone;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
