@@ -2,6 +2,7 @@ package com.example.a24h_coffee_client.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 
 import com.example.a24h_coffee_client.constant.AppConstants;
 import com.example.a24h_coffee_client.model.User;
@@ -11,6 +12,9 @@ public class ValidateUtils {
 
     public static boolean validateLoginIsEmpty(String email, String pass){
         return !email.isEmpty() && !pass.isEmpty();
+    }
+    public static boolean validateUpdateAccountIsEmpty(String trim, String trim1, String trim2, String trim3){
+        return !trim.isEmpty() && !trim1.isEmpty()&&!trim2.isEmpty() && !trim3.isEmpty();
     }
 
 //    public static boolean validateForgotPassIsEmpty(String email){
@@ -42,6 +46,8 @@ public class ValidateUtils {
     public static boolean validatePasswordEqual(String pass, String passwordNew){
         return pass.equals(passwordNew);
     }
+
+
 
     /**
      * Kiểm tra tính hợp lệ của mật khẩu.

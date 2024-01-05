@@ -14,14 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
-import com.example.a24h_coffee_client.R;
 import com.example.a24h_coffee_client.constant.AppConstants;
 import com.example.a24h_coffee_client.databinding.FragmentSettingsBinding;
 import com.example.a24h_coffee_client.model.User;
+import com.example.a24h_coffee_client.utils.FormatUtils;
 import com.example.a24h_coffee_client.view.activity.account.LoginActivity;
 import com.example.a24h_coffee_client.view.activity.changepass.ChangePassActivity;
 import com.example.a24h_coffee_client.view.activity.contact.ContactActivity;
-import com.example.a24h_coffee_client.view.activity.updateinfor.UpdateInforActivity;
+import com.example.a24h_coffee_client.view.activity.updateinfor.UpdateAccountActivity;
 import com.google.gson.Gson;
 
 public class SettingsFragment extends Fragment {
@@ -56,12 +56,14 @@ public class SettingsFragment extends Fragment {
         setListener();
     }
 
+
     private void setListener() {
         mBinding.layoutLogout.setOnClickListener(view1 -> {
             SharedPreferences.Editor editor = getActivity().getSharedPreferences(AppConstants.PREFS_NAME, Context.MODE_PRIVATE).edit();
             editor.clear();
             editor.apply();
             startActivity(new Intent(getActivity(), LoginActivity.class));
+            getActivity().finishAffinity();
         });
         mBinding.layoutContact.setOnClickListener(view1 -> nextContact());
         mBinding.layoutUpdateInfor.setOnClickListener(view1 -> nextUpdateInfor());
@@ -73,11 +75,20 @@ public class SettingsFragment extends Fragment {
         startActivity(intent);
     }
     public void nextUpdateInfor(){
-        Intent intent = new Intent(getContext(), UpdateInforActivity.class);
+        Intent intent = new Intent(getContext(), UpdateAccountActivity.class);
         startActivity(intent);
     }
     public void nextChangePass(){
         Intent intent = new Intent(getContext(), ChangePassActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+            SharedPreferences sharedPreferences  = getActivity().getSharedPreferences(AppConstants.PREFS_NAME, Context.MODE_PRIVATE);
+            User user = new Gson().fromJson(sharedPreferences.getString(AppConstants.KEY_USER,""), User.class) ;
+            mBinding.tvNameUser.setText(user.getName());
+            Glide.with(this).load(user.getImage()).centerCrop().into(mBinding.civUser);
     }
 }

@@ -54,8 +54,7 @@ public class ChangePassActivity extends AppCompatActivity implements ChangePassC
     @Override
     public void onMessage(String message) {
          mProgressDialog.dismiss();
-
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

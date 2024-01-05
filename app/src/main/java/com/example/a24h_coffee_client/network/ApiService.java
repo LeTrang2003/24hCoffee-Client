@@ -9,11 +9,18 @@ import com.example.a24h_coffee_client.view.fragment.home.response.ResponseProduc
 import com.example.a24h_coffee_client.view.fragment.notification.ResponseNotification;
 import com.example.a24h_coffee_client.view.fragment.table.ResponseTable;
 
+import java.util.Date;
+
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -26,11 +33,22 @@ public interface ApiService {
                              @Field("password") String password);
 
     // user
+    @POST(ManagerUrl.UPDATE_INF_USER_FILE)
+    @Multipart
+    Call<ResponseUser> updateUserFile (@Part("userName") RequestBody userName,
+                                   @Part("name") RequestBody name,
+                                   @Part MultipartBody.Part image,
+                                   @Part("phone") RequestBody phone,
+                                   @Part("dateOfBirth") RequestBody dateOfBirth,
+                                   @Part("sex") RequestBody sex);
     @POST(ManagerUrl.UPDATE_INF_USER)
     @FormUrlEncoded
     Call<ResponseUser> updateUser (@Field("userName") String userName,
                                    @Field("name") String name,
-                                   @Field("image") String image);
+                                   @Field("image") String image,
+                                   @Field("phone") String phone,
+                                   @Field("dateOfBirth") String dateOfBirth,
+                                   @Field("sex") String sex);
     @POST(ManagerUrl.READ_USER)
     @FormUrlEncoded
     Call<ResponseUser> readUser (@Field("userName") String userName);

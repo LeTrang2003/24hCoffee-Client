@@ -51,6 +51,17 @@ public class FormatUtils {
         return dateFormat.format(date);
     }
 
+    public static Date parseDateCreate(String dateString) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", new Locale("vi", "VN"));
+        return dateFormat.parse(dateString);
+    }
+
+    public static String formatDateOfBirth(Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", new Locale("vi", "VN"));
+        return dateFormat.format(date);
+    }
+
+
     public static String formatDatePayment(Date date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", new Locale("vi", "VN"));
         return dateFormat.format(date);

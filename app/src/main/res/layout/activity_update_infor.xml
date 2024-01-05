@@ -5,18 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/GrayPrimary"
-    tools:context=".view.activity.updateinfor.UpdateInforActivity">
+    tools:context=".view.activity.updateinfor.UpdateAccountActivity">
+
+    <RadioGroup
+        android:id="@+id/radio_sex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/layoutText13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/layoutText13">
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nam" />
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nữ" />
+    </RadioGroup>
 
     <LinearLayout
         android:id="@+id/layoutText13"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:orientation="vertical"
+        android:layout_marginEnd="8dp"
         android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/radio_sex"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layoutText12"
         tools:ignore="UselessLeaf">
@@ -30,6 +52,7 @@
             app:hintTextColor="@color/BrowPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_sex_information"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_gr_gioi_tinh_nd"
@@ -38,8 +61,10 @@
                 android:hint="Giới tính"
                 android:textColor="@color/BlackPrimary"
                 android:textSize="16sp"
+                android:enabled="false"
                 tools:ignore="HardcodedText" />
         </com.google.android.material.textfield.TextInputLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -65,6 +90,7 @@
             app:hintTextColor="@color/BrowPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_date_information"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_date_line_24_black"
@@ -100,6 +126,7 @@
             app:hintTextColor="@color/BrowPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_phone_information"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_phone_line"
@@ -214,6 +241,7 @@
             app:hintTextColor="@color/BrowPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_name_information"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_user_line_edit_24"
