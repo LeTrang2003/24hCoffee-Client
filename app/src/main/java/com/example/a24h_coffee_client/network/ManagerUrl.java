@@ -12,7 +12,7 @@ public class ManagerUrl {
     public static final String READ_USER = "read-user";
 
     // setting
-    public static final String CHANGE_PASS = "resetPass-user";
+    public static final String CHANGE_PASS = "update/password/user";
 
     // table
     public static final String READ_TABLE = "tables";

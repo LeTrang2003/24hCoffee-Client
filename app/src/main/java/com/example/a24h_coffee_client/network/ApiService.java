@@ -38,7 +38,7 @@ public interface ApiService {
     @POST(ManagerUrl.CHANGE_PASS)
     @FormUrlEncoded
     Call<ResponseUser> changePassword (@Field("userName") String userName,
-                                      @Field("password") String password);
+                                       @Field("password") String password);
 
     // banner
     @GET(ManagerUrl.READ_BANNER)
@@ -68,7 +68,8 @@ public interface ApiService {
     Call<ResponseBillDetail> updateBill(@Field("billId") String billId,
                                         @Field("tableId") int tableId,
                                         @Field("timeOut") String timeOut,
-                                        @Field("datePayment") String datePayment);
+                                        @Field("datePayment") String datePayment,
+                                        @Field("intoMoney") double intoMoney);
 
     // bill detail
     @GET(ManagerUrl.READ_TABLE_BILL)

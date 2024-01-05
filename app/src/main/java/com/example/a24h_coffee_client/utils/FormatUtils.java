@@ -1,7 +1,11 @@
 package com.example.a24h_coffee_client.utils;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
+
+import com.example.a24h_coffee_client.constant.AppConstants;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -47,19 +51,20 @@ public class FormatUtils {
         return dateFormat.format(date);
     }
 
-    public static String formatID(){
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+    public static String formatDatePayment(Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", new Locale("vi", "VN"));
+        return dateFormat.format(date);
+    }
+
+    public static String formatTimeOut(Date date){
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return dateFormat.format(new Date());
     }
 
-    /**
-     * Kiểm tra tính hợp lệ của mật khẩu.
-     *
-     * @param password Mật khẩu cần kiểm tra.
-     * @return `true` nếu mật khẩu hợp lệ, ngược lại trả về `false`.
-     */
-    public static boolean isPasswordValid(String password) {
-        return password != null;
+
+    public static String formatID(){
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        return dateFormat.format(new Date());
     }
 
 }

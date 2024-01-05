@@ -7,8 +7,8 @@ public class AppConstants {
     public static final String CALL_API_ERROR_MESSAGE = "Call Api Error";
     public static final String CALL_API_FAILURE_MESSAGE = "Call Api Failed";
     public static final String ENTER_INFO = "Bạn cần nhập đầy đủ thông tin";
-    public static final String EMPTY_PASS = "Vui lòng nhập mật khẩu hiện tại";
-    public static final String EMPTY_PASSNEW = "Vui lòng nhập mật khẩu mới";
+    public static final String EMPTY_PASS = "Mật khẩu hiện tại không đúng";
+    public static final String EMPTY_PASSNEW = "Mật khẩu mới trùng mật khẩu cũ";
     public static final String PASS_NOT_DUPLICATES = "Mật khẩu nhập lại không trùng khớp";
     public static final String TABLE = "Bàn ";
     public static final String TABLE_HAVE = "Có khách";

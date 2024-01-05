@@ -21,7 +21,7 @@ public interface TableDetailContract {
         void getListBillDetail(String billID);
         void insertBill(String id, int tableId, String userId);
         void insertBillDetail(int quantity, double intoMoney, int productID, String billID);
-        void paymentBill(String billId, int tableId, String timeOut, String datePayment);
+        void paymentBill(String billId, int tableId, String timeOut, String datePayment, double intoMoney);
         void insertNotification(String content, String userId);
     }
 }
