@@ -183,8 +183,8 @@
 
     <ImageView
         android:id="@+id/iv_loading_home_fragment"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="@+id/scrollView4"
         app:layout_constraintEnd_toEndOf="parent"

@@ -66,9 +66,21 @@ public interface ApiService {
     @GET(ManagerUrl.READ_PRODUCT)
     Call<ResponseProduct> readProduct();
 
+    @GET(ManagerUrl.READ_PRODUCT_HAVE)
+    Call<ResponseProduct> readHaveProduct();
+
     // table
     @GET(ManagerUrl.READ_TABLE)
     Call<ResponseTable> readTable();
+
+    @GET(ManagerUrl.READ_TABLE_EMPTY)
+    Call<ResponseTable> readTableEmpty();
+
+    @POST(ManagerUrl.SWAP_TABLE)
+    @FormUrlEncoded
+    Call<ResponseBillDetail> swapTableBill(@Field("id") String id,
+                                            @Field("tableIDBill") int tableIDBill,
+                                            @Field("tableIDTable") int tableIDTable);
 
     // category
     @GET(ManagerUrl.READ_CATEGORY)
@@ -100,6 +112,14 @@ public interface ApiService {
                                                 @Field("intoMoney") double intoMoney,
                                                 @Field("productID") int productID,
                                                 @Field("billID") String billID);
+
+    @POST(ManagerUrl.UPDATE_QUANTITY_BILL_DETAIL)
+    @FormUrlEncoded
+    Call<ResponseBillDetail> updateQuantityBillDetail(@Field("id") int id,
+                                                      @Field("quantity") int quantity);
+    @POST(ManagerUrl.DELETE_BILL_DETAIL)
+    @FormUrlEncoded
+    Call<ResponseBillDetail> deleteBillDetail(@Field("id") int id);
 
     // notification
     @POST(ManagerUrl.READ_NOTIFICATION)

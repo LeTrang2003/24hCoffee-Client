@@ -25,6 +25,11 @@
         <item name="android:textColorPrimary">@color/black</item>
         <!-- Các thuộc tính màu sắc khác nếu cần -->
     </style>
+
+    <style name="color">
+        <item name="color">@color/BrowPrimary</item>
+        <!-- Các thuộc tính màu sắc khác nếu cần -->
+    </style>
 <!--    &lt;!&ndash; Custom toast &ndash;&gt;-->
 <!--    <style name="successfulToast">-->
 <!--        <item name="stTextColor">#fff</item>-->

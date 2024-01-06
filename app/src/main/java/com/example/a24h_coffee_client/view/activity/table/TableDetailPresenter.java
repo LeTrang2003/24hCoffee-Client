@@ -5,12 +5,15 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.a24h_coffee_client.constant.AppConstants;
+import com.example.a24h_coffee_client.model.BillDetail;
 import com.example.a24h_coffee_client.network.ApiClient;
 import com.example.a24h_coffee_client.network.ApiService;
 import com.example.a24h_coffee_client.view.activity.table.response.ResponseBillDetail;
 import com.example.a24h_coffee_client.view.activity.table.response.ResponseTableBill;
 import com.example.a24h_coffee_client.view.fragment.notification.ResponseNotification;
+import com.example.a24h_coffee_client.view.fragment.table.ResponseTable;
 
+import java.util.List;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -19,6 +22,7 @@ import retrofit2.Response;
 
 public class TableDetailPresenter implements TableDetailContract.Presenter {
     private final TableDetailContract.View mView;
+
 
     public TableDetailPresenter(TableDetailContract.View mView) {
         this.mView = mView;
@@ -130,6 +134,47 @@ public class TableDetailPresenter implements TableDetailContract.Presenter {
             }
         });
     }
+
+    @Override
+    public void deleteBillDetail(BillDetail billDetail) {
+        ApiClient.getClient().create(ApiService.class).deleteBillDetail(billDetail.getId()).enqueue(new Callback<ResponseBillDetail>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBillDetail> call, @NonNull Response<ResponseBillDetail> response) {
+                if (response.isSuccessful()){
+                    assert response.body() != null;
+                    if (AppConstants.SUCCESS.equals(Objects.requireNonNull(response.body()).getStatus())){
+                       mView.onDeleteBillDetail(billDetail);
+                    }
+                }else {
+                    Log.d("deleteBillDetail", "error isSuccessful");
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBillDetail> call, @NonNull Throwable t) {
+                Log.d("ER", t.toString());
+            }
+        });
+    }
+
+    @Override
+    public void updateQuantityBillDetail(BillDetail billDetail, int quantity, List<BillDetail> billDetails) {
+        ApiClient.getClient().create(ApiService.class).updateQuantityBillDetail(billDetail.getId(), quantity).enqueue(new Callback<ResponseBillDetail>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBillDetail> call, @NonNull Response<ResponseBillDetail> response) {
+                assert response.body() != null;
+                if (AppConstants.SUCCESS.equals(Objects.requireNonNull(response.body()).getStatus())){
+                    mView.onUpdateBillDetail(billDetails);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBillDetail> call, @NonNull Throwable t) {
+                Log.d("ER", t.toString());
+            }
+        });
+    }
+
 
     @Override
     public void insertNotification(String content, String userId) {

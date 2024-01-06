@@ -2,12 +2,14 @@ package com.example.a24h_coffee_client.view.activity.table;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.a24h_coffee_client.R;
 import com.example.a24h_coffee_client.adapter.AdapterBillDetail;
+import com.example.a24h_coffee_client.adapter.MyBottomSheetTable;
 import com.example.a24h_coffee_client.constant.AppConstants;
 import com.example.a24h_coffee_client.databinding.ActivityTableDetailBinding;
 import com.example.a24h_coffee_client.model.BillDetail;
@@ -42,6 +45,8 @@ public class TableDetailActivity extends AppCompatActivity implements TableDetai
     private TableDetailContract.Presenter mPresenter;
     private TableBill mTableBill;
     private  List<BillDetail> mBillDetails;
+    private  List<BillDetail> mBillDetails1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +75,16 @@ public class TableDetailActivity extends AppCompatActivity implements TableDetai
         mBinding.btnBackTableDetail.setOnClickListener(view -> onBackPressed());
         mBinding.tvAddProductTableDetail.setOnClickListener(view -> startAddProductActivity());
         mBinding.btnOrder.setOnClickListener(view -> checkStatusTable());
+        mBinding.ivSwapTable.setOnClickListener(view -> checkSwapTable());
+    }
+
+    private void checkSwapTable() {
+        if (getTable().getStatusOrder().equals("Trống")){
+            Toast.makeText(this, "Bạn cần đặt bàn trước", Toast.LENGTH_SHORT).show();
+        }else {
+            MyBottomSheetTable myBottomSheetTable = new MyBottomSheetTable(this, mTableBill, getTable().getId());
+            myBottomSheetTable.show(getSupportFragmentManager(), myBottomSheetTable.getTag());
+        }
     }
 
     private void startAddProductActivity() {
@@ -78,7 +93,7 @@ public class TableDetailActivity extends AppCompatActivity implements TableDetai
             intent.putExtra("statusTable", mTableBill.getStatusOrder());
             intent.putExtra("billId", mTableBill.getId());
             intent.putExtra("tableIDTem", getTable().getId());
-            intent.putExtra("billDetail", new Gson().toJson(mBillDetails));
+            intent.putExtra("billDetail", new Gson().toJson(mBillDetails1));
         }else {
             intent.putExtra("statusTable", getTable().getStatusOrder());
             intent.putExtra("billId", "null");
@@ -135,7 +150,22 @@ public class TableDetailActivity extends AppCompatActivity implements TableDetai
     @Override
     public void onListBillDetail(List<BillDetail> billDetails) {
         Collections.reverse(billDetails);
-        AdapterBillDetail adapterBillDetail = new AdapterBillDetail(billDetails);
+        AdapterBillDetail adapterBillDetail = new AdapterBillDetail(billDetails, mPresenter, this, 1);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
+        mBinding.rcvTableDetail.setLayoutManager(layoutManager);
+        mBinding.rcvTableDetail.setAdapter(adapterBillDetail);
+        double sumPrice = 0;
+        for (BillDetail billDetail : billDetails){
+            sumPrice += billDetail.getPriceProduct() * billDetail.getQuantityProduct();
+        }
+        mBinding.tvPriceOrder.setText(FormatUtils.formatCurrency(sumPrice));
+        mBillDetails1 = billDetails;
+    }
+
+    public void setAdapterNoTable(List<BillDetail> billDetails) {
+        Collections.reverse(billDetails);
+        AdapterBillDetail adapterBillDetail = new AdapterBillDetail(billDetails, mPresenter, this, 2);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         mBinding.rcvTableDetail.setLayoutManager(layoutManager);
@@ -146,7 +176,6 @@ public class TableDetailActivity extends AppCompatActivity implements TableDetai
         }
         mBinding.tvPriceOrder.setText(FormatUtils.formatCurrency(sumPrice));
     }
-
     @Override
     public void onInsertBill(String billId) {
         for (int i = 0 ; i < mBillDetails.size() ; i ++){
@@ -164,6 +193,28 @@ public class TableDetailActivity extends AppCompatActivity implements TableDetai
     @Override
     public void onInsertNotification() {
         startActivity(new Intent(this, MainActivity.class));
+        finish();
+    }
+
+    @Override
+    public void onUpdateBillDetail(List<BillDetail> billDetails) {
+        double sumPrice = 0;
+        for (BillDetail billDetail1 : billDetails){
+            sumPrice += billDetail1.getPriceProduct() * billDetail1.getQuantityProduct();
+        }
+        mBinding.tvPriceOrder.setText(FormatUtils.formatCurrency(sumPrice));
+
+    }
+
+    @Override
+    public void onDeleteBillDetail(BillDetail billDetail) {
+        double price = FormatUtils.parseCurrency(mBinding.tvPriceOrder.getText().toString().trim());
+        mBinding.tvPriceOrder.setText(FormatUtils.formatCurrency(price - (billDetail.getPriceProduct() * billDetail.getQuantityProduct())));
+    }
+
+    @Override
+    public void onConfirmTable() {
+        onBackPressed();
     }
 
     private final ActivityResultLauncher<Intent> mLauncher =
@@ -182,7 +233,7 @@ public class TableDetailActivity extends AppCompatActivity implements TableDetai
                                 Type listType = new TypeToken<List<BillDetail>>() {}.getType();
                                 List<BillDetail> billDetails = new Gson().fromJson(strBilTem, listType);
                                 mBillDetails.addAll(billDetails);
-                                onListBillDetail(mBillDetails);
+                                setAdapterNoTable(mBillDetails);
                                 mBinding.btnOrder.setEnabled(true);
                                 mBinding.btnOrder.setBackgroundColor(ContextCompat.getColor(this, R.color.BrowPrimary));
                             }

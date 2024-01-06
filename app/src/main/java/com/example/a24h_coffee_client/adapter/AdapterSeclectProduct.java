@@ -98,18 +98,9 @@ public class AdapterSeclectProduct extends RecyclerView.Adapter<AdapterSeclectPr
             Glide.with(binding.getRoot()).load(product.getImage()).centerCrop().into(binding.ivSelectProduct);
             binding.tvNameSelectProduct.setText(product.getName());
             binding.tvPriceSelectProduct.setText(FormatUtils.formatCurrency(product.getPrice()));
+            binding.tvStatusSelectProduct.setText(product.getStatus());
+            binding.tvStatusSelectProduct.setTextColor(ContextCompat.getColor(binding.getRoot().getContext(), R.color.GreenPrimary));
 
-            if (product.getStatus().equals("Còn hàng")){
-                binding.tvStatusSelectProduct.setText("Còn hàng");
-                binding.tvStatusSelectProduct.setTextColor(ContextCompat.getColor(binding.getRoot().getContext(), R.color.GreenPrimary));
-            }else {
-                binding.tvStatusSelectProduct.setText("Hết hàng");
-                binding.tvStatusSelectProduct.setTextColor(ContextCompat.getColor(binding.getRoot().getContext(), R.color.RedPrimary));
-                binding.layoutSelectProduct.setBackgroundResource(R.drawable.bg_no_select_product);
-                binding.checkBox.setEnabled(false);
-                binding.btnMinusQuantityCart.setEnabled(false);
-                binding.btnAddQuantityCart.setEnabled(false);
             }
         }
-    }
 }

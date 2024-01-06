@@ -26,7 +26,7 @@ public class ProductSelectPresenter implements ProductSelectContract.Presenter{
 
     @Override
     public void getListProduct() {
-        ApiClient.getClient().create(ApiService.class).readProduct().enqueue(new Callback<ResponseProduct>() {
+        ApiClient.getClient().create(ApiService.class).readHaveProduct().enqueue(new Callback<ResponseProduct>() {
             @Override
             public void onResponse(@NonNull Call<ResponseProduct> call, @NonNull Response<ResponseProduct> response) {
                 assert response.body() != null;

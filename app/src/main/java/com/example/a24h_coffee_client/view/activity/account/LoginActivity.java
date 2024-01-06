@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
             mProgressDialog = ProgressDialog.show(this, "", "Đăng nhập");
             mPresenter.login(mBinding.etUserName.getText().toString(), mBinding.etPassword.getText().toString());
         });
+        mBinding.tvQuenMatKhau.setOnClickListener(view -> Toast.makeText(this, "Vui lòng liên hệ với chủ cửa hàng", Toast.LENGTH_SHORT).show());
     }
 
     @Override
@@ -61,6 +62,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
         }else {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+            mProgressDialog.dismiss();
         }
     }
 }

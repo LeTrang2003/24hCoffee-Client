@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import com.example.a24h_coffee_client.adapter.AdapterCategory;
 import com.example.a24h_coffee_client.adapter.AdapterTable;
 import com.example.a24h_coffee_client.databinding.FragmentTableBinding;
 import com.example.a24h_coffee_client.model.Table;
+import com.example.a24h_coffee_client.utils.UIUtils;
 import com.example.a24h_coffee_client.view.activity.table.TableDetailActivity;
 import com.google.gson.Gson;
 
@@ -30,6 +32,7 @@ public class TableFragment extends Fragment implements TableContract.View {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -51,6 +54,10 @@ public class TableFragment extends Fragment implements TableContract.View {
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 3);
         mBinding.rcvTable.setLayoutManager(layoutManager);
         mBinding.rcvTable.setAdapter(adapterTable);
+        new Handler().postDelayed(() -> {
+            UIUtils.openLayout(mBinding.ivLoadingTableFragment, mBinding.layoutTableFragment, true, getContext());
+        }, 500);
+
     }
 
     @Override
@@ -63,6 +70,7 @@ public class TableFragment extends Fragment implements TableContract.View {
     @Override
     public void onStart() {
         super.onStart();
+        UIUtils.openLayout(mBinding.ivLoadingTableFragment, mBinding.layoutTableFragment, false, getContext());
         mPresenter.getListTable();
     }
 }

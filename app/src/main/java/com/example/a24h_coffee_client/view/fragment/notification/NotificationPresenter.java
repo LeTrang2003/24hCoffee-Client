@@ -31,10 +31,10 @@ public class NotificationPresenter implements NotificationContract.Presenter{
                     if (AppConstants.SUCCESS.equals(Objects.requireNonNull(response.body()).getStatus())){
                         mView.onListNotification(response.body().getNotifications());
                     }else {
-                        Log.d("ER", "error");
+                        mView.onListNotification(null);
                     }
                 }else {
-                    Log.d("ER", "error");
+                    mView.onListNotification(null);
                 }
             }
 

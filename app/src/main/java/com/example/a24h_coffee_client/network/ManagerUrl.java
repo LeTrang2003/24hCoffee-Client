@@ -17,9 +17,12 @@ public class ManagerUrl {
 
     // table
     public static final String READ_TABLE = "tables";
+    public static final String READ_TABLE_EMPTY = "empty/tables";
+    public static final String SWAP_TABLE = "swap/table/bill";
 
     // product
     public static final String READ_PRODUCT = "products";
+    public static final String READ_PRODUCT_HAVE = "have/products";
 
     // banner
     public static final String READ_BANNER = "banners";
@@ -29,6 +32,7 @@ public class ManagerUrl {
     // bill
     public static final String INSERT_BILL = "insert/bill";
     public static final String UPDATE_BILL = "update/bill";
+
     // notification
     public static final String READ_NOTIFICATION = "notifications";
     public static final String INSERT_NOTIFICATION = "insert/notification";
@@ -39,4 +43,6 @@ public class ManagerUrl {
     public static final String READ_TABLE_BILL = "table/bill/{tableID}";
     public static final String READ_DETAIL_BILL = "detail/bills/{billID}";
     public static final String INSERT_BILL_DETAIL = "insert/bill/detail";
+    public static final String UPDATE_QUANTITY_BILL_DETAIL = "update/quantity/bill";
+    public static final String DELETE_BILL_DETAIL = "delete/bill/detail";
 }
