@@ -46,10 +46,12 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ViewHo
             selectedItem = holder.getAdapterPosition();
             notifyDataSetChanged();
         });
+
         // item được chọn
         holder.binding.btnTypeProduct.setBackgroundResource(
                 position == selectedItem ? R.drawable.bg_select_category : R.drawable.bg_no_select_category
         );
+
         // item ko được chọn
         holder.binding.tvTypeProduct.setTextColor(ContextCompat.getColor(holder.binding.getRoot().getContext(),
                 position == selectedItem ? R.color.white : R.color.black));

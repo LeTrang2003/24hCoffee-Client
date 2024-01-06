@@ -51,7 +51,9 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
         mList.remove(position);
         notifyItemRemoved(position);
     }
-
+    public int getListSize() {
+        return mList.size();
+    }
     @Override
     public int getItemCount() {
         return mList != null ? mList.size() : 0;

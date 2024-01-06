@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -32,6 +33,9 @@ import com.example.a24h_coffee_client.model.Category;
 import com.example.a24h_coffee_client.model.Product;
 import com.example.a24h_coffee_client.model.User;
 import com.example.a24h_coffee_client.utils.DepthPageTransformer;
+import com.example.a24h_coffee_client.utils.UIUtils;
+import com.example.a24h_coffee_client.view.activity.SplashActivity;
+import com.example.a24h_coffee_client.view.activity.account.LoginActivity;
 import com.example.a24h_coffee_client.view.activity.search.SearchActivity;
 import com.google.gson.Gson;
 
@@ -71,6 +75,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        UIUtils.openLayout(mBinding.ivLoadingHomeFragment, mBinding.layoutHomeFragment, false, getContext());
         super.onViewCreated(view, savedInstanceState);
         mPresenter.getListBanner();
         mPresenter.getListCategories();
@@ -111,6 +116,10 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mBinding.rcvProduct.setAdapter(adapterProduct);
         mBinding.rcvProduct.setNestedScrollingEnabled(false);
         mProductList = products;
+        new Handler().postDelayed(() -> {
+            UIUtils.openLayout(mBinding.ivLoadingHomeFragment, mBinding.layoutHomeFragment, true, getContext());
+        }, 500);
+
     }
 
     @Override

@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.example.a24h_coffee_client.constant.AppConstants;
 import com.example.a24h_coffee_client.databinding.FragmentSettingsBinding;
 import com.example.a24h_coffee_client.model.User;
 import com.example.a24h_coffee_client.utils.FormatUtils;
+import com.example.a24h_coffee_client.utils.UIUtils;
 import com.example.a24h_coffee_client.view.activity.account.LoginActivity;
 import com.example.a24h_coffee_client.view.activity.changepass.ChangePassActivity;
 import com.example.a24h_coffee_client.view.activity.contact.ContactActivity;
@@ -86,9 +88,14 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-            SharedPreferences sharedPreferences  = getActivity().getSharedPreferences(AppConstants.PREFS_NAME, Context.MODE_PRIVATE);
-            User user = new Gson().fromJson(sharedPreferences.getString(AppConstants.KEY_USER,""), User.class) ;
-            mBinding.tvNameUser.setText(user.getName());
-            Glide.with(this).load(user.getImage()).centerCrop().into(mBinding.civUser);
+        UIUtils.openLayout(mBinding.ivLoadingSettingFragment, mBinding.layoutSettingFragment, false, getContext());
+        SharedPreferences sharedPreferences  = getActivity().getSharedPreferences(AppConstants.PREFS_NAME, Context.MODE_PRIVATE);
+        User user = new Gson().fromJson(sharedPreferences.getString(AppConstants.KEY_USER,""), User.class) ;
+        mBinding.tvNameUser.setText(user.getName());
+        Glide.with(this).load(user.getImage()).centerCrop().into(mBinding.civUser);
+        new Handler().postDelayed(() -> {
+            UIUtils.openLayout(mBinding.ivLoadingSettingFragment, mBinding.layoutSettingFragment, true, getContext());
+        }, 500);
+
     }
 }

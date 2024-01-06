@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,12 +37,14 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mBinding;
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+        mBinding.tvBadge.setVisibility(View.GONE);
         switchFragment(new HomeFragment());
         onClick();
     }
@@ -120,10 +123,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void setBadgerNotification(boolean check) {
 //        BadgeDrawable badgeDrawable = mBinding.bnvMain.getOrCreateBadge(R.id.menu_home);
-//        assert badgeDrawable != null;
 //        badgeDrawable.setVisible(true);
-//        badgeDrawable.setBackgroundColor(ContextCompat.getColor(this, R.color.RedPrimary));
-
+//        badgeDrawable.setBackgroundColor(ContextCompat.getColor(this, R.color.black));
         if (check){
             mBinding.tvBadge.setVisibility(View.VISIBLE);
         }else {
