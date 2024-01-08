@@ -3,6 +3,8 @@ package com.example.a24h_coffee_client.adapter;
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,15 +21,19 @@ import com.example.a24h_coffee_client.model.Product;
 import com.example.a24h_coffee_client.utils.FormatUtils;
 import com.example.a24h_coffee_client.view.activity.product.ProductSelectContract;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
-public class AdapterSeclectProduct extends RecyclerView.Adapter<AdapterSeclectProduct.ViewHolder> {
+public class AdapterSeclectProduct extends RecyclerView.Adapter<AdapterSeclectProduct.ViewHolder> implements Filterable {
     private List<Product> mList;
+    private List<Product> filteredProducts;
     private ProductSelectContract.View mView;
 
     public AdapterSeclectProduct(List<Product> mList, ProductSelectContract.View mView) {
         this.mList = mList;
         this.mView = mView;
+        this.filteredProducts = mList;
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -85,6 +91,39 @@ public class AdapterSeclectProduct extends RecyclerView.Adapter<AdapterSeclectPr
         mView.onItemClickListener(billTemporary, billDetail, mBinding.checkBox.isChecked());
     }
 
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            // loc du lieu theo dk
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String search = charSequence.toString().toLowerCase(Locale.getDefault());
+                ArrayList<Product> listTask = new ArrayList<>();
+
+                if (search.isEmpty()){
+                    listTask.addAll(filteredProducts);
+                }else {
+                    for (Product product : filteredProducts ) {
+                        if (product.getName().toLowerCase(Locale.getDefault()).contains(search.toLowerCase())){
+                            listTask.add(product);
+                        }
+                    }
+                }
+
+                FilterResults  filterResults = new FilterResults();
+                filterResults.values = listTask;
+                return filterResults;
+            }
+
+            // lay ket qua loc
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mList = (List<Product>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

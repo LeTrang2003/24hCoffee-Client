@@ -46,7 +46,7 @@
 
     </androidx.cardview.widget.CardView>
 
-    <EditText
+    <SearchView
         android:id="@+id/et_search_product_activity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -54,7 +54,6 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/bg_search"
-        android:drawableStart="@drawable/ic_search"
         android:ems="10"
         android:fontFamily="@font/inter_regular"
         android:hint="@string/content_search"

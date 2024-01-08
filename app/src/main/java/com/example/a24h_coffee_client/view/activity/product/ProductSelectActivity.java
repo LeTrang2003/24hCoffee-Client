@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.a24h_coffee_client.adapter.AdapterSeclectProduct;
 import com.example.a24h_coffee_client.databinding.ActivityProductBinding;
@@ -64,6 +66,27 @@ public class ProductSelectActivity extends AppCompatActivity implements ProductS
     private void onClick() {
         mBinding.btnConfirm.setOnClickListener(view -> checkStatusTable());
         mBinding.btnBackTableDetail.setOnClickListener(view -> onBackPressed());
+        mBinding.etSearchProductActivity.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                if (mProducts != null) {
+                    adapterSeclectProduct.getFilter().filter(s);
+                }else {
+                    Toast.makeText(ProductSelectActivity.this, "Không có nhân viên để tìm kiếm", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if (mProducts != null) {
+                    adapterSeclectProduct.getFilter().filter(s);
+                }else {
+                    Toast.makeText(ProductSelectActivity.this, "Không có nhân viên để tìm kiếm", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            }
+        });
     }
 
     private void checkStatusTable() {
@@ -120,6 +143,8 @@ public class ProductSelectActivity extends AppCompatActivity implements ProductS
             }
         }
     }
+
+
 
 
 }
